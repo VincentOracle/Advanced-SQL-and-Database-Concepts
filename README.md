@@ -3,6 +3,33 @@
 
 This Advanced SQL course offers a comprehensive and structured learning path for individuals seeking to expand their expertise in database management and querying. By delving into functions, stored procedures, triggers, views, and other advanced concepts, students are empowered to handle intricate data operations and enhance their efficiency in working with databases. With a practical hands-on approach, learners can not only gain theoretical knowledge but also gain practical experience that will prove invaluable in real-world scenarios. By completing this course, students can confidently demonstrate their ability to create, manage, and optimize SQL queries, setting the stage for successful and effective data manipulation and management in various professional settings.
 
+# Introduction
+The realm of database management and querying has evolved significantly, enabling organizations to extract meaningful insights and efficiently manage their data resources. In the context of relational databases, Structured Query Language (SQL) serves as the backbone, offering a wide array of functionalities to interact with data. One crucial aspect of SQL is the advanced level of proficiency that can be achieved through comprehensive training, allowing individuals to harness its capabilities for sophisticated tasks. 
+This learning guide introduces the Advanced SQL course, building upon the foundation of SQL Fundamentals. This 75-hour self-directed practical training covers topics such as functions, procedures, triggers, views, and more, enabling students to master complex SQL operations and amplify their database management prowess.
+
+## Modules
+### Module 1: MySQL aggregate functions
+#### a.Exercise 1.1: AVG 
+The MySQL AVG() function is used to calculate the average value of a numeric column in a table. It takes a single argument, which is typically the column name or an expression involving column(s) on which you want to calculate the average. The result of the AVG() function is the arithmetic mean of all the values in the specified column e.g.
+SELECT 
+    AVG(buyprice) 'Average Price'
+FROM
+products;
+The AVG(buyprice) part calculates the average value of the 'buyprice' column in the 'products' table.The AS 'Average Price' renames the calculated average value column to 'Average Price' in the result set.
+
+#### b.Exercise 1.2: COUNT
+The MySQL COUNT() function is used to count the number of rows in a table that satisfy a certain condition or have non-null values in a specified column. It is commonly used to determine the total number of records that meet a specific criterion. The function can also be used without any argument to count all rows in the table.
+In your example:
+The CREATE TABLE statement creates a table named count_demos with columns id and val.
+The INSERT INTO statement inserts multiple rows into the count_demos table with different values for the val column, including some NULL values.
+CREATE TABLE count_demos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    val INT
+);
+INSERT INTO count_demos(val) 
+VALUES(1),(1),(2),(2),(NULL),(3),(4),(NULL),(5);
+SELECT COUNT(*) FROM count_demos;
+
 # Database concepts
 In this sample project, we have undertaken the task of designing a comprehensive database for Fit @ Home, a home gym concierge service that offers equipment subscription packages and personalized training sessions in the comfort and safety of one's home. The assignment focuses on various crucial concepts of database design, such as conceptual modeling, normalization, and creating a logical and physical data model. The goal is to organize the existing disorganized data into an efficient and structured database system that will enable Fit @ Home to manage their operations effectively and support their business growth.
 
