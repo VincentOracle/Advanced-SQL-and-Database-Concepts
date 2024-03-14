@@ -31,7 +31,7 @@ INSERT INTO count_demos(val)
 VALUES(1),(1),(2),(2),(NULL),(3),(4),(NULL),(5);
 SELECT COUNT(*) FROM count_demos;
 
-c.Exercise 1.3: SUM
+#### c.Exercise 1.3: SUM
 The MySQL SUM() function is used to calculate the sum of all values in a specified column of a table. It adds up the numeric values in the specified column and returns the total sum.In the example:
 CREATE TABLE sum_demo (
     n INT
@@ -44,7 +44,7 @@ FROM
     sum_demo;
 The CREATE TABLE statement creates a table named sum_demo with a single column named n.The INSERT INTO statement inserts multiple rows into the sum_demo table with different values for the n column, including some NULL values.
 
-d.Exercise 1.4: MIN 
+#### d.Exercise 1.4: MIN 
 The MySQL MIN() function is used to retrieve the minimum value from a specified column in a table. It finds the smallest value in the column and returns that value.
 In the example query:
 SELECT 
@@ -53,13 +53,13 @@ FROM
 products;
 The query calculates the minimum value from the 'buyPrice' column in the 'products' table. The result will be the smallest value found in that column.
 
-e.Exercise 1.5: MAX 
+#### e.Exercise 1.5: MAX 
 The MySQL MAX() function is used to retrieve the maximum value from a specified column in a table. It finds the largest value in the column and returns that value. In the example query:
 SELECT MAX(amount)
 FROM payments;
 The query calculates the maximum value from the 'amount' column in the 'payments' table. 
 
-f.Exercise 1.6: GROUP_CONCAT
+#### f.Exercise 1.6: GROUP_CONCAT
 The MySQL GROUP_CONCAT() function is used to concatenate multiple values from a column into a single string, where the values are separated by a specified delimiter. It is often used with the GROUP BY clause to aggregate values from multiple rows into a single result.
 The CREATE TABLE statement creates a table named t with a single column named v.The INSERT INTO statement inserts multiple rows into the t table with different values for the v column.The query:
 CREATE TABLE t (
@@ -75,7 +75,7 @@ SELECT
 FROM
 t;
 
-Module 2: MySQL string functions
+### Module 2: MySQL string functions
 a.Exercise 2.1: CONCAT
 The MySQL CONCAT() function is used to concatenate multiple strings together. It takes one or more string values as arguments and combines them into a single string. In in the below examples:
 SELECT CONCAT('MySQL','CONCAT');
@@ -85,7 +85,7 @@ FROM
 customers;
 This query uses the CONCAT() function to concatenate the values of the 'contactFirstName' and 'contactLastName' columns with a space in between. The result will be a new column named 'Fullname' that contains the concatenated full names of the customers from the 'customers' table.
 
-b.Exercise 2.2: LENGTH and CHAR_LENGTH
+#### b.Exercise 2.2: LENGTH and CHAR_LENGTH
 In MySQL, there are two functions related to string length: CHAR_LENGTH() and LENGTH(). These functions provide information about the length of strings, but they have different behaviors based on the character encoding used.
 CHAR_LENGTH() function:
 The CHAR_LENGTH() function is used to return the number of characters in a given string. It counts the number of characters based on the specified character set.
@@ -96,7 +96,7 @@ SHOW CHARACTER SET;
 SET @s = CONVERT('MySQL String Length' USING ucs2);
 SELECT CHAR_LENGTH(@s), LENGTH(@s);
 
-c.Exercise 2.3: REPLACE
+#### c.Exercise 2.3: REPLACE
 The MySQL REPLACE() function is used to search for a substring within a given string and replace all occurrences of that substring with another specified string. It's particularly useful when you need to modify or correct data in a text column. In the below examples:
 UPDATE products 
 SET 
@@ -106,7 +106,7 @@ SET
 This query performs an update on the 'products' table. It searches for the substring 'abuot' within the 'productDescription' column and replaces all occurrences with the correct spelling 'about'. For instance, if you have a row in the 'products' table with 'productDescription' containing 'This is abuot the product', after running the update query, the value will be updated to 'This is about the product'.
  The REPLACE() function is very useful when you need to perform batch updates to correct or modify data in text columns across multiple rows. It can save you time and effort by automatically making changes to large amounts of data in a consistent way.
 
-d.Exercise 2.4: SUBSTRING
+#### d.Exercise 2.4: SUBSTRING
 The MySQL SUBSTRING() function is used to extract a portion of a given string based on the specified starting position and length. It allows you to extract substrings from a string column or a literal string. In the examples:
 SELECT SUBSTRING('MYSQL SUBSTRING', 7);
 SELECT SUBSTRING('MySQL SUBSTRING' FROM 1 FOR 5); -- MySQL
@@ -115,7 +115,7 @@ This query is similar to the previous one, but it uses a negative starting posit
 The SUBSTRING() function is useful when you want to extract specific parts of a string, such as words, phrases, or sections, based on their position and length within the string.
 
 
-e.Exercise 2.5: LEFT
+#### e.Exercise 2.5: LEFT
 The MySQL LEFT() function is used to extract a specified number of characters from the left (start) of a given string. It allows you to retrieve a substring from the beginning of a string up to a certain length.
 SELECT LEFT('MySQL LEFT', 5);
 SELECT LEFT('MySQL LEFT', 0);
@@ -123,7 +123,7 @@ SELECT LEFT('MySQL LEFT', -2);
 This query uses a negative length (-2) in the LEFT() function to attempt to extract characters from the left of the string 'MySQL LEFT'. MySQL interprets a negative length as 0, resulting in an empty string
 The LEFT() function is useful when you want to retrieve a portion of a string starting from the left side of the string, up to a specified length. It's often used for tasks like truncating strings or extracting prefixes from text.
 
-f.Exercise 2.6: FIND_IN_SET
+#### f.Exercise 2.6: FIND_IN_SET
 The MySQL FIND_IN_SET() function is used to search for a specified string within a comma-separated list of values. It returns the position (index) of the searched string in the list, or 0 if the string is not found.
 SELECT FIND_IN_SET('y','x,y,z'); -- 2
 SELECT FIND_IN_SET('a','x,y,z');
@@ -159,7 +159,7 @@ Assuming the 'belts' column contains values like 'white,yellow,orange', 'purple,
 
 
 
-g.Exercise 2.7: TRIM
+#### g.Exercise 2.7: TRIM
 The MySQL TRIM() function is used to remove specified characters or spaces from the beginning, end, or both sides of a string. It helps to clean up and format text data by removing unwanted leading and trailing characters.
 SELECT TRIM(' MySQL TRIM Function ');
 SELECT TRIM(LEADING FROM '    MySQL TRIM Function   ');
@@ -199,11 +199,7 @@ The DATEDIFF() function is commonly used when you need to calculate the time dur
 
 
 
-
-
-
-
-b.Exercise 3.2: DATE_FORMAT
+#### b.Exercise 3.2: DATE_FORMAT
 The MySQL DATE_FORMAT() function is used to format a date value into a specific string representation according to a specified format string. It allows you to customize how dates are displayed in the result set.
 SELECT 
     orderNumber,
@@ -217,7 +213,7 @@ DATE_FORMAT(requireddate, '%a %D %b %Y'): This formats the 'requireddate' column
 DATE_FORMAT(shippedDate, '%W %D %M %Y'): This formats the 'shippedDate' column using the format '%W %D %M %Y', which represents the full weekday name, day of the month with ordinal suffix, full month name, and year.
 The result set will display the formatted dates according to the specified formats for each order, providing a clear and human-readable representation of the date values. This function is useful when you want to present date information to users in a specific format.
 
-c.Exercise 3.3: STR_TO_DATE 
+#### c.Exercise 3.3: STR_TO_DATE 
 The MySQL STR_TO_DATE() function is used to convert a string representation of a date or time into a MySQL date or datetime value. It requires two arguments: the input string and a format string that defines how the input string is structured.
 SELECT STR_TO_DATE('21,5,2013','%d,%m,%Y');
 SELECT STR_TO_DATE('113005','%h%i%s');
@@ -226,7 +222,7 @@ The result is the time '11:30:05', which corresponds to 11 hours, 30 minutes, an
 The STR_TO_DATE() function is useful when you need to convert date and time information stored as strings into MySQL's native date and time data types for proper storage and manipulation.
 
 
-d.Exercise 3.4: NOW
+#### d.Exercise 3.4: NOW
 The MySQL NOW() function is used to retrieve the current date and time as a MySQL datetime value. It's commonly used to record the timestamp when a record is created or modified.
        -- mysql now minus 1 hour
 SELECT (NOW() - INTERVAL 1 HOUR) 'NOW - 1 hour',
@@ -244,7 +240,7 @@ SELECT * FROM tmp;
 
 This query retrieves all records from the 'tmp' table, including the 'id', 'title', and 'created_on' columns. The 'created_on' column will display the timestamp when each record was inserted. The NOW() function is commonly used in scenarios where you need to track the creation or modification time of records in your database.
 
-e.Exercise 3.5: GREATEST and LEAST 
+#### e.Exercise 3.5: GREATEST and LEAST 
 The MySQL GREATEST() and LEAST() functions are used to find the maximum and minimum values among a list of expressions or values, respectively. They are often used to determine the greatest or smallest value from a set of inputs.
 
 SELECT GREATEST(10, 20, 30),  -- 30
@@ -254,7 +250,7 @@ SELECT GREATEST(10, null, 30),  -- null
 This query demonstrates how the GREATEST() and LEAST() functions handle NULL values. If any of the input values is NULL, the GREATEST() function returns NULL because it's impossible to determine the greatest value when one of the inputs is unknown. The LEAST() function also returns NULL when any of the input values is NULL.
 These functions are useful for comparing values within SQL queries and determining the maximum and minimum values among a set of expressions or columns. Just keep in mind that when NULL values are involved, the result may also be NULL.
 
-f.Exercise 3.6: ISNULL
+#### f.Exercise 3.6: ISNULL
 The MySQL ISNULL() function is used to test whether an expression or value is NULL. It returns 1 if the expression is NULL, and 0 if the expression is not NULL.
 CREATE TABLE special_isnull (
     start_date DATE NOT NULL
@@ -272,8 +268,8 @@ ISNULL(start_date);
 This query retrieves all records from the 'special_isnull' table where the 'start_date' column is NULL. However, in this case, it's important to note that the 'start_date' column is defined as NOT NULL, so it cannot contain NULL values. Therefore, even though the query is checking for NULL values, it will not return any rows because the 'start_date' column cannot hold NULL values according to its definition.
 The ISNULL() function is generally used to check for NULL values in columns that allow NULL, not in columns defined as NOT NULL. In your provided example, due to the NOT NULL constraint on the 'start_date' column, the result will be an empty result set.
 
-Module 4: Introduction to database views, MySQL views and create views
-a.Exercise 4.1: Creating Views in MySQL.
+### Module 4: Introduction to database views, MySQL views and create views
+#### a.Exercise 4.1: Creating Views in MySQL.
 The MySQL CREATE VIEW statement is used to create a virtual table that is based on the result of a SELECT query. Views allow you to abstract complex queries into a simplified and reusable form, making it easier to query and analyze data.
 CREATE VIEW salePerOrder AS
     SELECT 
@@ -288,9 +284,9 @@ This query creates a view named 'salePerOrder'. The view retrieves data from the
 This command will show a list of full tables and views in the database, along with their types. The 'salePerOrder' view you created using the CREATE VIEW statement acts as a virtual table that stores the results of the query. You can query this view to retrieve the total sales amount for each order without needing to repeat the complex query logic each time. It provides a convenient way to access summarized data.
 
 
-Module 5: Creating updatable Views, Ensuring Views Consistency and Managing
+### Module 5: Creating updatable Views, Ensuring Views Consistency and Managing
 Views
-a)Exercise 5.1: How to create an updatable view and update data in the underlying tablethrough the view
+#### a)Exercise 5.1: How to create an updatable view and update data in the underlying tablethrough the view
 MySQL Updatable Views allow you to perform certain UPDATE operations on the view itself, which will update the underlying data in the base table. However, there are certain conditions that need to be met for a view to be updatable.
 CREATE VIEW officeInfo
  AS 
