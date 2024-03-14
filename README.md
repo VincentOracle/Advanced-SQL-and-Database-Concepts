@@ -298,7 +298,7 @@ SET
 WHERE
 officeCode = 4;
 
-b)Exercise 5.2: Ensuring Views Consistency Using WITH CHECK OPTION Clause
+#### b)Exercise 5.2: Ensuring Views Consistency Using WITH CHECK OPTION Clause
 The WITH CHECK OPTION clause in MySQL views is used to enforce that any data modification made through the view adheres to the conditions specified in the view's WHERE clause. In other words, it ensures that only rows satisfying the view's condition can be modified through the view.
 CREATE OR REPLACE VIEW vps AS
     SELECT 
@@ -316,7 +316,7 @@ CREATE OR REPLACE VIEW vps AS
         jobTitle LIKE '%VP%';
 SELECT * FROM vps;
 
-c)Exercise 5.3: How to manage views in MySQL including displaying, modifying and removing views
+#### c)Exercise 5.3: How to manage views in MySQL including displaying, modifying and removing views
 In MySQL, views can be created, altered, and managed to provide a more convenient and efficient way to query data. Your example illustrates the process of creating a view, altering its structure, and then querying it:
 
 CREATE VIEW organization AS
@@ -339,8 +339,8 @@ ALTER VIEW organization
     ON M.employeeNumber = E.ReportsTo
   ORDER BY Manager;
 
-Module 6: MySQL Stored Procedures Introduction
-a.Exercise 6.1: How to develop the first MySQL stored procedure using CREATE PROCEDURE statement
+### Module 6: MySQL Stored Procedures Introduction
+#### a.Exercise 6.1: How to develop the first MySQL stored procedure using CREATE PROCEDURE statement
 In MySQL, a stored procedure is a named group of SQL statements that can be executed as a single unit. Stored procedures provide a way to encapsulate business logic or specific tasks and can be called with specific parameters.
 SELECT * FROM products;
 DELIMITER //
@@ -352,8 +352,9 @@ END //
 DELIMITER ;
 The DELIMITER command is used to change the delimiter from the default semicolon (;) to a custom one (in this case, //). This is necessary because you're defining a stored procedure that contains multiple SQL statements, and the semicolon is used to separate individual statements. By changing the delimiter, MySQL knows that the stored procedure definition will continue until the new delimiter is encountered. Calling the stored procedure will execute the SQL statement inside it, which in this case is the SELECT query to retrieve all products from the 'products' table.
 
-b.Exercise 6.2: How to declare, and use variables in the stored procedure. In addition, you will learn about the scopes of variables.
+#### b.Exercise 6.2: How to declare, and use variables in the stored procedure. In addition, you will learn about the scopes of variables.
 In MySQL stored procedures, variables can be declared and used to store temporary values. These variables allow you to perform calculations, store results, and control the flow of your procedure. Your example demonstrates the use of variables in a stored procedure:
+
 DECLARE productCount INT DEFAULT 0;
 SELECT COUNT(*) 
 INTO productCount
@@ -361,7 +362,7 @@ FROM products;
 This query calculates the total number of rows in the 'products' table using the COUNT(*) function. The result is assigned to the productCount variable using the INTO clause.
 Variables are an important feature in stored procedures, as they allow you to store and manipulate data within the procedure's scope. They can be used in various ways, such as storing query results, intermediate calculation results, or control values.
 
-c.Exercise 6.3: how to write MySQL stored procedures that have parameters
+#### c.Exercise 6.3: how to write MySQL stored procedures that have parameters
 In MySQL stored procedures, you can define parameters that allow you to pass values into the procedure when it's called. Your example demonstrates the creation and usage of a stored procedure with parameters:
 CREATE PROCEDURE GetOfficeByCountry(
 	IN countryName VARCHAR(255)
@@ -422,8 +423,8 @@ BEGIN
 
 END
 
-Module 8: MySQL IF and CASE Statements
-a)Exercise 8.1: how to use MySQL IF statement to execute a block of SQL code based on conditions.
+### Module 8: MySQL IF and CASE Statements
+#### a)Exercise 8.1: how to use MySQL IF statement to execute a block of SQL code based on conditions.
 DELIMITER $$
 CREATE PROCEDURE GetCustomerLevel(
     IN  pCustomerNumber INT, 
@@ -453,7 +454,7 @@ ORDER BY
     creditLimit DESC;
 
 
-b)Exercise 8.2: how to use MySQL CASE statements to construct complex conditional statements inside stored programs.
+#### b)Exercise 8.2: how to use MySQL CASE statements to construct complex conditional statements inside stored programs.
 DELIMITER $$
 
 CREATE PROCEDURE GetCustomerShipping(
@@ -482,9 +483,9 @@ END$$
 
 DELIMITER ;
 
-Module 9: MySQL Loop Statements, Cursor, Listing and Error Handling in Store
+### Module 9: MySQL Loop Statements, Cursor, Listing and Error Handling in Store
 Procedure
-a.Exercise 9.1: How to use various loop statements in stored procedure to execute a block of code repeatedly based on a given Boolean condition.
+#### a.Exercise 9.1: How to use various loop statements in stored procedure to execute a block of code repeatedly based on a given Boolean condition.
 DROP PROCEDURE LoopDemo;
 
 DELIMITER $$
@@ -514,7 +515,7 @@ DELIMITER ;
 CALL LoopDemo();
 
 
-b.Exercise 9.2: How to use MySQL cursor in stored procedures to loop over a result set and process each row at a time.
+#### b.Exercise 9.2: How to use MySQL cursor in stored procedures to loop over a result set and process each row at a time.
 DELIMITER $$
 CREATE PROCEDURE createEmailList (
 	INOUT emailList varchar(4000)
@@ -547,7 +548,7 @@ BEGIN
 END$$
 DELIMITER ;
 
-c.Exercise 9.3: How to list all stored procedures in a MySQL database.
+#### c.Exercise 9.3: How to list all stored procedures in a MySQL database.
 
 SELECT 
     routine_name
@@ -564,7 +565,7 @@ WHERE
     routine_type = 'PROCEDURE'
         AND routine_schema = 'classicmodels';
 
-d.Exercise 9.4: How to use MySQL handler to handle exceptions or errors encountered in stored procedures.
+#### d.Exercise 9.4: How to use MySQL handler to handle exceptions or errors encountered in stored procedures.
 DROP PROCEDURE IF EXISTS InsertSupplierProduct;
 
 DELIMITER $$
@@ -592,7 +593,7 @@ END$$
 
 DELIMITER ;
 
-Module 10: MySQL Stored Procedures – Raising Error Conditions and Stored Function
+### Module 10: MySQL Stored Procedures – Raising Error Conditions and Stored Function
 a.Exercise 10.1: How to use MySQL SIGNAL and RESIGNAL statements to raise error conditions inside stored procedures.
 DELIMITER $$
 CREATE PROCEDURE AddOrderItem(
@@ -618,7 +619,7 @@ BEGIN
 END
 CALL AddOrderItem(10,'S10_1678',1,95.7,1);
 
-b.Exercise 10.2: How to create MySQL stored functions using CREATE FUNCTION statement.
+#### b.Exercise 10.2: How to create MySQL stored functions using CREATE FUNCTION statement.
 DELIMITER $$
 
 CREATE FUNCTION CustomerLevel(
@@ -642,11 +643,11 @@ BEGIN
 END$$
 DELIMITER ;
 
-Module 11: MySQL Triggers Implementation, Creating and Managing
-a.Exercise 11.1: Introduces you to MySQL triggers implementation.
+### Module 11: MySQL Triggers Implementation, Creating and Managing
+#### a.Exercise 11.1: Introduces you to MySQL triggers implementation.
 tablename_(BEFORE | AFTER)_(INSERT| UPDATE | DELETE)
 
-b.Exercise 11.2: Shows you how to create a simple trigger in MySQL to audit the changes of a table.
+#### b.Exercise 11.2: Shows you how to create a simple trigger in MySQL to audit the changes of a table.
 CREATE TABLE employees_audit (
     id INT AUTO_INCREMENT PRIMARY KEY,
     employeeNumber INT NOT NULL,
@@ -665,7 +666,7 @@ CREATE TRIGGER before_employee_update
 SHOW TRIGGERS;
 
 
-c.Exercise 11.3: Shows you how to create multiple triggers for the same trigger event and action time
+#### c.Exercise 11.3: Shows you how to create multiple triggers for the same trigger event and action time
 CREATE TABLE PriceLogs (
     id INT AUTO_INCREMENT,
     productCode VARCHAR(15) NOT NULL,
@@ -700,19 +701,19 @@ FROM
 WHERE 
     productCode = 'S12_1099';
 
-d.Exercise 11.4: How to manage triggers including displaying, modifying, and removing triggers in MySQL databases
+#### d.Exercise 11.4: How to manage triggers including displaying, modifying, and removing triggers in MySQL databases
 SHOW TRIGGERS
 FROM classicmodels;
 
 
-Module 12: Working with MySQL Scheduled Event and Modifying MySQL Events
-a.Exercise 12.1 : Working with MySQL Scheduled Event
+### Module 12: Working with MySQL Scheduled Event and Modifying MySQL Events
+#### a.Exercise 12.1 : Working with MySQL Scheduled Event
 SHOW PROCESSLIST;
 SET GLOBAL event_scheduler = ON;
 SHOW PROCESSLIST;
 
 
-b.Exercise 12.2 :Modifying MySQL Events
+#### b.Exercise 12.2 :Modifying MySQL Events
 ALTER EVENT test_event_04
 DO
    INSERT INTO messages(message,created_at)
@@ -730,7 +731,7 @@ CREATE TABLE posts (
 ALTER TABLE offices
 DROP INDEX address;
 
-b.Exercise 13.2: MySQL Natural Language Full-Text Searches
+#### b.Exercise 13.2: MySQL Natural Language Full-Text Searches
 In MySQL, the FULLTEXT search capability allows you to perform natural language searches on text-based columns. Your example demonstrates how to set up and perform a natural language full-text search:
 ALTER TABLE products 
 ADD FULLTEXT(productline);
@@ -748,7 +749,8 @@ FROM products: This indicates that you're querying the 'products' table.
 WHERE MATCH(productLine) AGAINST('Classic'): This is the condition where you use the MATCH ... AGAINST clause to perform the full-text search. It checks if the 'productLine' column matches the word 'Classic'.
 The MATCH ... AGAINST clause is used to perform natural language searches. It requires a FULLTEXT index on the columns being searched. The search term 'Classic' is used as an example, and it will match rows where the 'productLine' contains that term.
 Natural language full-text searches are useful when you want to search for relevant content based on the actual language used in the data. It's important to note that full-text searches have specific requirements and limitations, and their performance depends on the size of the dataset and the nature of the search terms.
-Conclusion
+
+## Conclusion
 In conclusion, the Advanced SQL course offers a comprehensive and structured learning path for individuals seeking to expand their expertise in database management and querying. By delving into functions, stored procedures, triggers, views, and other advanced concepts, students are empowered to handle intricate data operations and enhance their efficiency in working with databases. With a practical hands-on approach, learners can not only gain theoretical knowledge but also gain practical experience that will prove invaluable in real-world scenarios. By completing this course, students can confidently demonstrate their ability to create, manage, and optimize SQL queries, setting the stage for successful and effective data manipulation and management in various professional settings.
 
 
