@@ -126,23 +126,29 @@ This query performs an update on the 'products' table. It searches for the subst
 
 #### d.Exercise 2.4: SUBSTRING
 The MySQL SUBSTRING() function is used to extract a portion of a given string based on the specified starting position and length. It allows you to extract substrings from a string column or a literal string. In the examples:
+```
 SELECT SUBSTRING('MYSQL SUBSTRING', 7);
 SELECT SUBSTRING('MySQL SUBSTRING' FROM 1 FOR 5); -- MySQL
 SELECT SUBSTRING('MySQL SUBSTRING' FROM -15 FOR 5); -- MySQL
+```
+
 This query is similar to the previous one, but it uses a negative starting position to count from the end of the string.  The negative starting position counts from the end of the string. In this case, it starts 15 characters from the end and extracts the same substring 'MySQL' with a length of 5 characters.
 The SUBSTRING() function is useful when you want to extract specific parts of a string, such as words, phrases, or sections, based on their position and length within the string.
 
 
 #### e.Exercise 2.5: LEFT
 The MySQL LEFT() function is used to extract a specified number of characters from the left (start) of a given string. It allows you to retrieve a substring from the beginning of a string up to a certain length.
-SELECT LEFT('MySQL LEFT', 5);
+
+```SELECT LEFT('MySQL LEFT', 5);
 SELECT LEFT('MySQL LEFT', 0);
 SELECT LEFT('MySQL LEFT', -2);
+```
 This query uses a negative length (-2) in the LEFT() function to attempt to extract characters from the left of the string 'MySQL LEFT'. MySQL interprets a negative length as 0, resulting in an empty string
 The LEFT() function is useful when you want to retrieve a portion of a string starting from the left side of the string, up to a specified length. It's often used for tasks like truncating strings or extracting prefixes from text.
 
 #### f.Exercise 2.6: FIND_IN_SET
 The MySQL FIND_IN_SET() function is used to search for a specified string within a comma-separated list of values. It returns the position (index) of the searched string in the list, or 0 if the string is not found.
+```
 SELECT FIND_IN_SET('y','x,y,z'); -- 2
 SELECT FIND_IN_SET('a','x,y,z');
 CREATE TABLE IF NOT EXISTS divisions (
@@ -168,25 +174,25 @@ FROM
     divisions
 WHERE
 FIND_IN_SET('red', belts);
+```
 This query selects the 'name' and 'belts' columns from the 'divisions' table for rows where the 'belts' column contains the string 'red'. It uses the FIND_IN_SET() function to perform the search within the comma-separated list of belts.
 Assuming the 'belts' column contains values like 'white,yellow,orange', 'purple,green,blue', etc., the result will include rows where 'red' is found in the 'belts' list. The FIND_IN_SET() function is particularly useful when you have data stored as comma-separated values, such as tags, categories, or options, and you need to query based on specific values within those lists.
 
 
-
-
-
-
-
 #### g.Exercise 2.7: TRIM
 The MySQL TRIM() function is used to remove specified characters or spaces from the beginning, end, or both sides of a string. It helps to clean up and format text data by removing unwanted leading and trailing characters.
+```
 SELECT TRIM(' MySQL TRIM Function ');
 SELECT TRIM(LEADING FROM '    MySQL TRIM Function   ');
+```
+
 The result is the same as the first query. However, in this case, only leading spaces are removed.
 
 The TRIM() function is useful when you want to remove unnecessary spaces or specific characters from the beginning, end, or both ends of a string. It's often used to clean up data before performing comparisons or storing it in a database.
 
 h.Exercise 2.8: INSTR
 The MySQL INSTR() function is used to find the position (index) of a substring within a given string. It returns the position of the first occurrence of the substring in the string, or 0 if the substring is not found.
+```
 SELECT INSTR('MySQL INSTR', 'MySQL');
 SELECT INSTR('MySQL INSTR', 'mysql');
 EXPLAIN SELECT 
@@ -195,12 +201,14 @@ FROM
     products
 WHERE
 instr(productname,'1900');
+```
 This query uses the INSTR() function within a SELECT statement to search for the substring '1900' within the 'productname' column of the 'products' table. The EXPLAIN keyword is used to analyze how the query will be executed. The INSTR() function can be helpful when you need to locate specific substrings within text data or perform searches within larger strings, such as descriptions or titles.
 
 
 Module 3: MySQL date , time and comparison functions
 a.Exercise 3.1: DATEDIF
 The MySQL DATEDIFF() function is used to calculate the difference in days between two date values. It returns the number of days between the specified dates, considering the start date and end date.
+```
 SELECT DATEDIFF('2011-08-17', '2011-08-17'); -- 0 day
 SELECT 
     orderNumber, 
@@ -208,6 +216,7 @@ SELECT
 FROM
     orders
 ORDER BY daysLeft DESC;
+```
 This query calculates the difference in days between the 'requiredDate' and 'shippedDate' columns of the 'orders' table for each order. The calculated difference is assigned the alias 'daysLeft'. The results are ordered in descending order based on the calculated difference.
 
 The result will include a list of order numbers along with the number of days left between the required date and the shipped date for each order. Orders with the longest delay will appear first in the result set.
