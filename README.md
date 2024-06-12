@@ -11,18 +11,19 @@ This learning guide introduces the Advanced SQL course, building upon the founda
 ### Module 1: MySQL aggregate functions
 #### a.Exercise 1.1: AVG 
 The MySQL AVG() function is used to calculate the average value of a numeric column in a table. It takes a single argument, which is typically the column name or an expression involving column(s) on which you want to calculate the average. The result of the AVG() function is the arithmetic mean of all the values in the specified column e.g.
-
+```
 SELECT 
     AVG(buyprice) 'Average Price'
 FROM
 products;
 The AVG(buyprice) part calculates the average value of the 'buyprice' column in the 'products' table.The AS 'Average Price' renames the calculated average value column to 'Average Price' in the result set.
-
+```
 #### b.Exercise 1.2: COUNT
 The MySQL COUNT() function is used to count the number of rows in a table that satisfy a certain condition or have non-null values in a specified column. It is commonly used to determine the total number of records that meet a specific criterion. The function can also be used without any argument to count all rows in the table.
 In your example:
 The CREATE TABLE statement creates a table named count_demos with columns id and val.
 The INSERT INTO statement inserts multiple rows into the count_demos table with different values for the val column, including some NULL values.
+```
 CREATE TABLE count_demos (
     id INT AUTO_INCREMENT PRIMARY KEY,
     val INT
@@ -30,9 +31,10 @@ CREATE TABLE count_demos (
 INSERT INTO count_demos(val) 
 VALUES(1),(1),(2),(2),(NULL),(3),(4),(NULL),(5);
 SELECT COUNT(*) FROM count_demos;
-
+```
 #### c.Exercise 1.3: SUM
 The MySQL SUM() function is used to calculate the sum of all values in a specified column of a table. It adds up the numeric values in the specified column and returns the total sum.In the example:
+```
 CREATE TABLE sum_demo (
     n INT
 );
@@ -42,26 +44,32 @@ SELECT
     SUM(n)
 FROM
     sum_demo;
+```
 The CREATE TABLE statement creates a table named sum_demo with a single column named n.The INSERT INTO statement inserts multiple rows into the sum_demo table with different values for the n column, including some NULL values.
 
 #### d.Exercise 1.4: MIN 
 The MySQL MIN() function is used to retrieve the minimum value from a specified column in a table. It finds the smallest value in the column and returns that value.
 In the example query:
+```
 SELECT 
     MIN(buyPrice)
 FROM
 products;
+```
 The query calculates the minimum value from the 'buyPrice' column in the 'products' table. The result will be the smallest value found in that column.
 
 #### e.Exercise 1.5: MAX 
 The MySQL MAX() function is used to retrieve the maximum value from a specified column in a table. It finds the largest value in the column and returns that value. In the example query:
+```
 SELECT MAX(amount)
 FROM payments;
+```
 The query calculates the maximum value from the 'amount' column in the 'payments' table. 
 
 #### f.Exercise 1.6: GROUP_CONCAT
 The MySQL GROUP_CONCAT() function is used to concatenate multiple values from a column into a single string, where the values are separated by a specified delimiter. It is often used with the GROUP BY clause to aggregate values from multiple rows into a single result.
 The CREATE TABLE statement creates a table named t with a single column named v.The INSERT INTO statement inserts multiple rows into the t table with different values for the v column.The query:
+```
 CREATE TABLE t (
     v CHAR
 );
@@ -74,15 +82,19 @@ SELECT
         SEPARATOR ';')
 FROM
 t;
+```
 
 ### Module 2: MySQL string functions
 a.Exercise 2.1: CONCAT
 The MySQL CONCAT() function is used to concatenate multiple strings together. It takes one or more string values as arguments and combines them into a single string. In in the below examples:
+
+```
 SELECT CONCAT('MySQL','CONCAT');
 SELECT 
     concat(contactFirstName,' ',contactLastName) Fullname
 FROM
 customers;
+```
 This query uses the CONCAT() function to concatenate the values of the 'contactFirstName' and 'contactLastName' columns with a space in between. The result will be a new column named 'Fullname' that contains the concatenated full names of the customers from the 'customers' table.
 
 #### b.Exercise 2.2: LENGTH and CHAR_LENGTH
@@ -92,17 +104,23 @@ The CHAR_LENGTH() function is used to return the number of characters in a given
 LENGTH() function:
 The LENGTH() function returns the number of bytes in a string. It considers each character as a single byte, regardless of the actual character's length in multi-byte character sets.
 In the below examples:
+```
 SHOW CHARACTER SET;
+
 SET @s = CONVERT('MySQL String Length' USING ucs2);
 SELECT CHAR_LENGTH(@s), LENGTH(@s);
+```
 
 #### c.Exercise 2.3: REPLACE
 The MySQL REPLACE() function is used to search for a substring within a given string and replace all occurrences of that substring with another specified string. It's particularly useful when you need to modify or correct data in a text column. In the below examples:
+
+```
 UPDATE products 
 SET 
     productDescription = REPLACE(productDescription,
         'abuot',
         'about');
+```
 This query performs an update on the 'products' table. It searches for the substring 'abuot' within the 'productDescription' column and replaces all occurrences with the correct spelling 'about'. For instance, if you have a row in the 'products' table with 'productDescription' containing 'This is abuot the product', after running the update query, the value will be updated to 'This is about the product'.
  The REPLACE() function is very useful when you need to perform batch updates to correct or modify data in text columns across multiple rows. It can save you time and effort by automatically making changes to large amounts of data in a consistent way.
 
