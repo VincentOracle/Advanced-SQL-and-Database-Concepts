@@ -228,6 +228,7 @@ The DATEDIFF() function is commonly used when you need to calculate the time dur
 
 #### b.Exercise 3.2: DATE_FORMAT
 The MySQL DATE_FORMAT() function is used to format a date value into a specific string representation according to a specified format string. It allows you to customize how dates are displayed in the result set.
+```
 SELECT 
     orderNumber,
     DATE_FORMAT(orderdate, '%Y-%m-%d') orderDate,
@@ -235,6 +236,7 @@ SELECT
     DATE_FORMAT(shippedDate, '%W %D %M %Y') shippedDate
 FROM
 orders;
+```
 This query retrieves data from the 'orders' table and uses the DATE_FORMAT() function to format the date values in different ways. DATE_FORMAT(orderdate, '%Y-%m-%d'): This formats the 'orderdate' column using the format '%Y-%m-%d', which represents the year, month, and day in the 'YYYY-MM-DD' format.
 DATE_FORMAT(requireddate, '%a %D %b %Y'): This formats the 'requireddate' column using the format '%a %D %b %Y', which represents the abbreviated weekday name, day of the month with ordinal suffix, abbreviated month name, and year.
 DATE_FORMAT(shippedDate, '%W %D %M %Y'): This formats the 'shippedDate' column using the format '%W %D %M %Y', which represents the full weekday name, day of the month with ordinal suffix, full month name, and year.
@@ -242,8 +244,10 @@ The result set will display the formatted dates according to the specified forma
 
 #### c.Exercise 3.3: STR_TO_DATE 
 The MySQL STR_TO_DATE() function is used to convert a string representation of a date or time into a MySQL date or datetime value. It requires two arguments: the input string and a format string that defines how the input string is structured.
+```
 SELECT STR_TO_DATE('21,5,2013','%d,%m,%Y');
 SELECT STR_TO_DATE('113005','%h%i%s');
+```
 This query uses the STR_TO_DATE() function to convert the input string '113005' into a MySQL time value. The format string '%h%i%s' indicates that the input string is in the format hour, minute, second.
 The result is the time '11:30:05', which corresponds to 11 hours, 30 minutes, and 5 seconds.
 The STR_TO_DATE() function is useful when you need to convert date and time information stored as strings into MySQL's native date and time data types for proper storage and manipulation.
@@ -252,6 +256,7 @@ The STR_TO_DATE() function is useful when you need to convert date and time info
 #### d.Exercise 3.4: NOW
 The MySQL NOW() function is used to retrieve the current date and time as a MySQL datetime value. It's commonly used to record the timestamp when a record is created or modified.
        -- mysql now minus 1 hour
+```
 SELECT (NOW() - INTERVAL 1 HOUR) 'NOW - 1 hour',
         NOW(),
        -- mysql now plus 1 hour
@@ -264,21 +269,24 @@ CREATE TABLE tmp(
 INSERT INTO tmp(title)
 VALUES('Test NOW() function');
 SELECT * FROM tmp;
-
+```
 This query retrieves all records from the 'tmp' table, including the 'id', 'title', and 'created_on' columns. The 'created_on' column will display the timestamp when each record was inserted. The NOW() function is commonly used in scenarios where you need to track the creation or modification time of records in your database.
 
 #### e.Exercise 3.5: GREATEST and LEAST 
 The MySQL GREATEST() and LEAST() functions are used to find the maximum and minimum values among a list of expressions or values, respectively. They are often used to determine the greatest or smallest value from a set of inputs.
 
+```
 SELECT GREATEST(10, 20, 30),  -- 30
        LEAST(10, 20, 30); -- 10
 SELECT GREATEST(10, null, 30),  -- null
        LEAST(10, null , 30); -- null
+```
 This query demonstrates how the GREATEST() and LEAST() functions handle NULL values. If any of the input values is NULL, the GREATEST() function returns NULL because it's impossible to determine the greatest value when one of the inputs is unknown. The LEAST() function also returns NULL when any of the input values is NULL.
 These functions are useful for comparing values within SQL queries and determining the maximum and minimum values among a set of expressions or columns. Just keep in mind that when NULL values are involved, the result may also be NULL.
 
 #### f.Exercise 3.6: ISNULL
 The MySQL ISNULL() function is used to test whether an expression or value is NULL. It returns 1 if the expression is NULL, and 0 if the expression is not NULL.
+```
 CREATE TABLE special_isnull (
     start_date DATE NOT NULL
 );
@@ -291,6 +299,7 @@ FROM
     special_isnull
 WHERE
 ISNULL(start_date); 
+```
 
 This query retrieves all records from the 'special_isnull' table where the 'start_date' column is NULL. However, in this case, it's important to note that the 'start_date' column is defined as NOT NULL, so it cannot contain NULL values. Therefore, even though the query is checking for NULL values, it will not return any rows because the 'start_date' column cannot hold NULL values according to its definition.
 The ISNULL() function is generally used to check for NULL values in columns that allow NULL, not in columns defined as NOT NULL. In your provided example, due to the NOT NULL constraint on the 'start_date' column, the result will be an empty result set.
@@ -298,6 +307,7 @@ The ISNULL() function is generally used to check for NULL values in columns that
 ### Module 4: Introduction to database views, MySQL views and create views
 #### a.Exercise 4.1: Creating Views in MySQL.
 The MySQL CREATE VIEW statement is used to create a virtual table that is based on the result of a SELECT query. Views allow you to abstract complex queries into a simplified and reusable form, making it easier to query and analyze data.
+```
 CREATE VIEW salePerOrder AS
     SELECT 
         orderNumber, 
@@ -307,6 +317,7 @@ CREATE VIEW salePerOrder AS
     GROUP by orderNumber
 ORDER BY total DESC;
 SHOW TABLES;
+```
 This query creates a view named 'salePerOrder'. The view retrieves data from the 'orderDetails' table and calculates the total sales amount for each order. It uses the SUM() function to calculate the sum of the product of 'quantityOrdered' and 'priceEach' columns for each order. The result is grouped by the 'orderNumber' column and ordered in descending order by the total sales amount.
 This command will show a list of full tables and views in the database, along with their types. The 'salePerOrder' view you created using the CREATE VIEW statement acts as a virtual table that stores the results of the query. You can query this view to retrieve the total sales amount for each order without needing to repeat the complex query logic each time. It provides a convenient way to access summarized data.
 
@@ -315,6 +326,7 @@ This command will show a list of full tables and views in the database, along wi
 Views
 #### a)Exercise 5.1: How to create an updatable view and update data in the underlying tablethrough the view
 MySQL Updatable Views allow you to perform certain UPDATE operations on the view itself, which will update the underlying data in the base table. However, there are certain conditions that need to be met for a view to be updatable.
+```
 CREATE VIEW officeInfo
  AS 
    SELECT officeCode, phone, city
@@ -324,7 +336,7 @@ SET
     phone = '+33 14 723 5555'
 WHERE
 officeCode = 4;
-
+```
 #### b)Exercise 5.2: Ensuring Views Consistency Using WITH CHECK OPTION Clause
 The WITH CHECK OPTION clause in MySQL views is used to enforce that any data modification made through the view adheres to the conditions specified in the view's WHERE clause. In other words, it ensures that only rows satisfying the view's condition can be modified through the view.
 CREATE OR REPLACE VIEW vps AS
